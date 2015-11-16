@@ -14,7 +14,6 @@ class Mdl_home extends CI_Model{
     var $text;
 
     function __construct(){
-        $this->load->database();
         $data=$this->db->select([DB_PREFIX.self::ID,DB_PREFIX.self::TEXT])->limit(1)->get(DB_PREFIX.self::TABLE)->result_array();
         if(isset($data[0])){
             $this->id=$data[0][DB_PREFIX.self::ID];
