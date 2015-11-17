@@ -6,10 +6,10 @@
  * Time: 4:45 PM
  */
 
-class Mdl_home extends CI_Model{
-    const ID = 'home_id';
-    const TEXT='home_text';
-    const TABLE='home';
+class Mdl_research_paper extends CI_Model{
+    const ID = 'research_papers_id';
+    const TEXT='research_papers_text';
+    const TABLE='research_papers';
     var $id;
     var $text;
 
@@ -71,7 +71,7 @@ class Mdl_home extends CI_Model{
         return false;
     }
     public function insert(){
-    $this->db->insert('home',[
+    $this->db->insert('research_papers',[
         DB_PREFIX.self::ID=>$this->id,
        DB_PREFIX.self::TEXT=>$this->text
         ]);
