@@ -16,6 +16,7 @@
             <td><?=$record[DB_PREFIX.Mdl_research_paper::ID]?></td>
             <td><?=$record[DB_PREFIX.Mdl_research_paper::TEXT]?></td>
             <td><a href="<?=base_url()?>research_paper?record_id=<?=$record[DB_PREFIX.Mdl_research_paper::ID] ?>">Update</a></td>
+            <td><a href="<?=base_url()?>research_paper/delete?record_id=<?=$record[DB_PREFIX.Mdl_research_paper::ID] ?>">Delete</a></td>
         </tr>
        <?php }?>
    </table>

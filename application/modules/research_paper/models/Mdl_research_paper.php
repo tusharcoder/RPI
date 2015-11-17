@@ -83,4 +83,11 @@ class Mdl_research_paper extends CI_Model{
     public function getAllRecords(){
         return $this->db->get(self::TABLE)->result_array();
     }
+    public function delete(){
+        $this->db->where(DB_PREFIX.self::ID,$this->id)->delete(self::TABLE);
+        if($this->db->affected_rows()>0){
+            return true;
+        }
+        return false;
+    }
 }

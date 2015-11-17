@@ -24,7 +24,6 @@ class Research_paper extends MX_Controller{
         $data=array('text'=>$this->Mdl_research_paper->getText($record_id));
         $this->load->view('updateResearchPaper',$data);
     }
-
     public function store(){
         try{
         $insert =function(){
@@ -46,5 +45,14 @@ class Research_paper extends MX_Controller{
     }
     public function getAllRecords(){
        return $this->Mdl_research_paper->getAllRecords();
+    }
+    public function delete(){
+    $record_id=$this->input->get(RECORD_ID);
+        $this->Mdl_research_paper->setID($record_id);
+        if($this->Mdl_research_paper->delete()){
+            redirect(base_url()."research_paper");
+        }else{
+            echo 'Some unknown error occcurred';
+        };
     }
 }
