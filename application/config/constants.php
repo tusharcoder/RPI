@@ -88,3 +88,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
  *define database prefix as constant that will be used whenever needed
  */
 define('DB_PREFIX','rpi_');
+/*
+ * define record id as constant that willd be used when ever needed
+ */
+define('RECORD_ID','record_id');

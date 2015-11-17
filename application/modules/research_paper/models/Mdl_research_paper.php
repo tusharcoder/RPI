@@ -14,20 +14,12 @@ class Mdl_research_paper extends CI_Model{
     var $text;
 
     function __construct(){
-        $data=$this->db->select([DB_PREFIX.self::ID,DB_PREFIX.self::TEXT])->limit(1)->get(DB_PREFIX.self::TABLE)->result_array();
-        if(isset($data[0])){
-            $this->id=$data[0][DB_PREFIX.self::ID];
-            $this->text=$data[0][DB_PREFIX.self::TEXT];
-        }else{
             $this->id=NULL;
             $this->text=NULL;
-        }
-        unset($data);
     }
-
     function setData($id=null, $text=null)
     {
-            $this->setId(1);
+            $this->setId($id);
             $this->setText($this->security->xss_clean($text));
     }
 
@@ -50,11 +42,18 @@ class Mdl_research_paper extends CI_Model{
     /**
      * @return mixed
      */
-    public function getText()
+    public function getText($record_id=null)
     {
-        return $this->text;
-    }
 
+        $getRecordIdText =function($record_id){
+            $this->setText($this->db->where(DB_PREFIX.self::ID,$record_id)->select([DB_PREFIX.self::TEXT])->get(self::TABLE)->result_array()[0][DB_PREFIX.self::TEXT]);
+            /*$this->setId($record_id);*/
+            //set record id in session to use in update function
+            $this->session->set_userdata(RECORD_ID,$record_id);
+            return $this->text;
+        };
+        return is_null($record_id)?$this->text:$getRecordIdText($record_id);
+    }
     /**
      * @param mixed $text
      */
@@ -62,12 +61,13 @@ class Mdl_research_paper extends CI_Model{
     {
         $this->text = $text;
     }
-
     public function update(){
         $this->db->set(DB_PREFIX.self::TEXT,$this->text)->where(DB_PREFIX.self::ID, $this->id)->update(DB_PREFIX.self::TABLE);
         if($this->db->affected_rows()>0){
+            unset($_SESSION[RECORD_ID]);
             return true;
         }
+        unset($_SESSION[RECORD_ID]);
         return false;
     }
     public function insert(){
@@ -80,7 +80,6 @@ class Mdl_research_paper extends CI_Model{
         }
         return false;
     }
-
     public function setDatabase(){
         $rows=$this->db->count_all_results(DB_PREFIX.self::TABLE);
         if($rows==0){
@@ -88,5 +87,8 @@ class Mdl_research_paper extends CI_Model{
         }else{
             return $this->update();
         }
+    }
+    public function getAllRecords(){
+        return $this->db->get(self::TABLE)->result_array();
     }
 }
