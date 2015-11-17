@@ -34,8 +34,6 @@ class Research_paper extends MX_Controller{
             $this->Mdl_research_paper->setData($record_id,$this->input->post('research_papers_text'));
             return $this->Mdl_research_paper->update();
         };
-        /*print_r($this->Mdl_research_paper->getText());
-        die;*/
         $record_id=$this->session->userdata(RECORD_ID);
         $success=is_null($record_id)?$insert():$update($record_id);
         echo $success?'done':'error';
