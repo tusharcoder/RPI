@@ -80,14 +80,6 @@ class Mdl_research_paper extends CI_Model{
         }
         return false;
     }
-    public function setDatabase(){
-        $rows=$this->db->count_all_results(DB_PREFIX.self::TABLE);
-        if($rows==0){
-            return $this->insert();
-        }else{
-            return $this->update();
-        }
-    }
     public function getAllRecords(){
         return $this->db->get(self::TABLE)->result_array();
     }
