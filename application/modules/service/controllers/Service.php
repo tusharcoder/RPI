@@ -32,7 +32,7 @@ class Service extends MX_Controller{
                 echo "error occurred in uploading file";
                 exit(520);
             }
-            $this->Mdl_service->setData(null,$file_name,$this->input->post(Mdl_research_tool::TITLE),$this->input->post(Mdl_research_tool::DESCRIPTION));
+            $this->Mdl_service->setData(null,$file_name,$this->input->post(Mdl_service::TITLE),$this->input->post(Mdl_service::DESCRIPTION));
             return $this->Mdl_service->insert();
         };
         $update =function($record_id){
@@ -46,7 +46,7 @@ class Service extends MX_Controller{
                 echo "error occurred in uploading file";
                 exit(520);
             }
-            $this->Mdl_service->setData($record_id,$file_name,$this->input->post(Mdl_research_tool::TITLE),$this->input->post(Mdl_research_tool::DESCRIPTION));
+            $this->Mdl_service->setData($record_id,$file_name,$this->input->post(Mdl_service::TITLE),$this->input->post(Mdl_service::DESCRIPTION));
            // unlink("uploads/".$group_picture);
             return $this->Mdl_service->update();
         };
