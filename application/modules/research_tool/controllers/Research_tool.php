@@ -6,10 +6,10 @@
  * Time: 5:35 PM
  */
 
-class Service extends MX_Controller{
+class Research_tool extends MX_Controller{
     function __construct()
     {
-        $this->load->Model('Mdl_service');
+        $this->load->Model('Mdl_research_tool');
     }
     public function index(){
         $record_id=$this->input->get(RECORD_ID);
@@ -21,8 +21,8 @@ class Service extends MX_Controller{
         if(is_null($record_id)&&isset($_SESSION[RECORD_ID])){
             unset($_SESSION[RECORD_ID]);
         }
-        $data=$this->Mdl_service->getData($record_id);
-        $this->load->view('updateService',$data);
+        $data=$this->Mdl_research_tool->getData($record_id);
+        $this->load->view('updateResearchTool',$data);
     }
     public function store(){
         try{
@@ -32,11 +32,11 @@ class Service extends MX_Controller{
                 echo "error occurred in uploading file";
                 exit(520);
             }
-            $this->Mdl_service->setData(null,$file_name,$this->input->post(Mdl_research_tool::TITLE),$this->input->post(Mdl_research_tool::DESCRIPTION));
-            return $this->Mdl_service->insert();
+            $this->Mdl_research_tool->setData(null,$file_name,$this->input->post(Mdl_research_tool::TITLE),$this->input->post(Mdl_research_tool::DESCRIPTION));
+            return $this->Mdl_research_tool->insert();
         };
         $update =function($record_id){
-            $file_name=$this->Mdl_service->getImage($record_id);
+            $file_name=$this->Mdl_research_tool->getImage($record_id);
             /*print_r($file_name);
             die;*/
             if(!empty($_FILES['userfile']['name'])){
@@ -46,9 +46,9 @@ class Service extends MX_Controller{
                 echo "error occurred in uploading file";
                 exit(520);
             }
-            $this->Mdl_service->setData($record_id,$file_name,$this->input->post(Mdl_research_tool::TITLE),$this->input->post(Mdl_research_tool::DESCRIPTION));
+            $this->Mdl_research_tool->setData($record_id,$file_name,$this->input->post(Mdl_research_tool::TITLE),$this->input->post(Mdl_research_tool::DESCRIPTION));
            // unlink("uploads/".$group_picture);
-            return $this->Mdl_service->update();
+            return $this->Mdl_research_tool->update();
         };
         $record_id=$this->session->userdata(RECORD_ID);
         $success=is_null($record_id)?$insert():$update($record_id);
@@ -58,12 +58,12 @@ class Service extends MX_Controller{
         }
     }
     public function getAllRecords(){
-       return $this->Mdl_service->getAllRecords();
+       return $this->Mdl_research_tool->getAllRecords();
     }
     public function delete(){
     $record_id=$this->input->get(RECORD_ID);
-        $this->Mdl_service->setID($record_id);
-        if($this->Mdl_service->delete()){
+        $this->Mdl_research_tool->setID($record_id);
+        if($this->Mdl_research_tool->delete()){
             redirect(base_url()."service");
         }else{
             echo 'Some unknown error occcurred';

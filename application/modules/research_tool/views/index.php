@@ -17,8 +17,8 @@
             <td><img src="<?=base_url()?>uploads/<?=$record[DB_PREFIX.Mdl_research_tool::IMAGE]?>" height="320" width="320"/></td>
             <td><?=$record[DB_PREFIX.Mdl_research_tool::TITLE]?></td>
             <td><?=$record[DB_PREFIX.Mdl_research_tool::DESCRIPTION]?></td>
-            <td><a href="<?=base_url()?>service?record_id=<?=$record[DB_PREFIX.Mdl_research_tool::ID] ?>">Update</a></td>
-            <td><a href="<?=base_url()?>service/delete?record_id=<?=$record[DB_PREFIX.Mdl_research_tool::ID] ?>">Delete</a></td>
+            <td><a href="<?=base_url()?>research_tool?record_id=<?=$record[DB_PREFIX.Mdl_research_tool::ID] ?>">Update</a></td>
+            <td><a href="<?=base_url()?>research_tool/delete?record_id=<?=$record[DB_PREFIX.Mdl_research_tool::ID] ?>">Delete</a></td>
         </tr>
        <?php }?>
    </table>

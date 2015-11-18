@@ -6,12 +6,12 @@
  * Time: 4:45 PM
  */
 
-class Mdl_service extends CI_Model{
-    const ID = 'services_id';
-    const DESCRIPTION='services_description';
-    const IMAGE='services_image';
-    const TITLE='services_title';
-    const TABLE='services';
+class Mdl_research_tool extends CI_Model{
+    const ID = 'research_tools_id';
+    const DESCRIPTION='research_tools_description';
+    const IMAGE='research_tools_image';
+    const TITLE='research_tools_title';
+    const TABLE='research_tools';
     var $id;
     var $description;
     var $image;
@@ -141,7 +141,7 @@ SET ".DB_PREFIX.self::DESCRIPTION." = '".$this->description."' , ".
         return false;
     }
     public function insert(){
-    $this->db->insert('services',[
+    $this->db->insert('research_tools',[
         DB_PREFIX.self::ID=>$this->id,
        DB_PREFIX.self::DESCRIPTION=>$this->description,
         DB_PREFIX.self::IMAGE=>$this->image,
